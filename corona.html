@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corona Update</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1
+        style="color:rgb(255, 255, 255); text-align: center; background-color: #212529; margin-bottom: 0px; padding: 10px 0px;">
+        Corona live Update</h1>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Country</th>
+                <th scope="col">Total Cases</th>
+                <th scope="col">Total Deaths</th>
+                <th scope="col">Recovered</th>
+                <th scope="col">Update Time</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr id="tr">
+                
+            </tr>
+        </tbody>
+    </table>
+    <ul id="ul-tag">
+
+    </ul>
+
+
+
+
+
+    <script>
+
+        fetch('https://covid-api.mmediagroup.fr/v1/cases')
+            .then((res) => res.json())
+            .then((data) => displayStatus(data))
+
+        function displayStatus(cases) {
+            function recovered(cases){
+                var recovered=[]
+                Object.keys(cases).forEach(function (key){
+                    recovered.push(cases[key].All.recovered)
+                });
+                for( var i=1; i<recovered.length; i++){
+                    var result2= recovered[i]
+                
+                }
+                
+            }
+            
+
+            function number(cases){
+                let number=[]
+            Object.keys(cases).forEach(function (key) {
+            //   number.push(cases[key].All.confirmed);
+              number.push(cases[key].All.country)
+            });
+            
+            const tableBody=document.getElementById('tableBody')
+            for( let i=1; i<number.length; i++){
+                let result=number[i]
+                let tr= document.createElement('tr')
+                recovered(cases)
+                tr.innerHTML=`
+                <td>${[i]}</td>
+                <td>${result}</td>
+                <td>${result}</td>
+                <td>${result}</td>
+                <td>${result}</td>
+                <td>${result}</td>
+                `
+                tableBody.appendChild(tr)
+            }
+            }
+            number(cases)
+
+
+
+
+
+
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
